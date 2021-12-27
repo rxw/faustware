@@ -5,7 +5,7 @@ import os
 
 DIRS = ['blog', 'reading']
 MDDIR = 'mdsrc'
-HTTPDIR = 'http'
+HTTPDIR = 'serve'
 
 def build_index(dirs):
     body = open(os.path.join(MDDIR, 'header.html'), 'r').read()
