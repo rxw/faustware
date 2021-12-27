@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Compiles my website into http from markdown
+# Compiles my website into html from markdown
 import markdown
 import os
 
