@@ -25,7 +25,7 @@ group.
 - Closure: a set is closed under an operation if performance of that operation
   on members of the set always produces a member of that set
 - Associativity: for a binary operation, rearranging the parantheses will not
-  change the result. \\((2 + 3) + 4 = 2 + (3 + 4)\\)
+  change the result. $(2 + 3) + 4 = 2 + (3 + 4)$
 - Identity: an element with respect to the binary operation which leaves any
   element of the set unchanged when combined with it. {Addition: 0,
  Multiplication: 1}

@@ -3,6 +3,16 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <title>faustware</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+  </script>
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
@@ -36,7 +46,7 @@ group.</p>
 <li>Closure: a set is closed under an operation if performance of that operation
   on members of the set always produces a member of that set</li>
 <li>Associativity: for a binary operation, rearranging the parantheses will not
-  change the result. \((2 + 3) + 4 = 2 + (3 + 4)\)</li>
+  change the result. $(2 + 3) + 4 = 2 + (3 + 4)$</li>
 <li>Identity: an element with respect to the binary operation which leaves any
   element of the set unchanged when combined with it. {Addition: 0,
  Multiplication: 1}</li>
