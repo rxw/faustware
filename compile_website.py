@@ -3,7 +3,7 @@
 import markdown
 import os
 
-DIRS = ['blog', 'reading']
+DIRS = ['blog']
 MDDIR = 'mdsrc'
 HTTPDIR = 'serve'
 
@@ -25,7 +25,7 @@ def build_index(dirs):
             filepath = os.path.join(path, filename)
             content = open(filepath, 'r').read()
             name = filename.split('.')[0]
-            title = content.split('\n')[0]
+            title = content.split('\n')[0][1:]
 
             section += '- [{}](/{}.html)\n'.format(title, name)
 

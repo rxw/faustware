@@ -1,7 +1,5 @@
-Hello, my name is Fausto Uribe and I'm a computer science student at MIT. 
-In my free time I like to lift, read, play videogames, watch interesting videos and code.
-Here you can find some of my record keeping about all of these things and more.
-
-- [Resume](/FaustoUribeResume2022.pdf)
-- [Github](http://github.com/rxw)
-- [LinkedIn](http://linkedin.com/in/fausto-uribe)
+- cs @ mit
+- prev @ lyft, prev @ stripe
+- crypto, coding, maths and lifting
+- searching on blockchains
+- [resume](/FaustoUribeResume2022.pdf), [github](http://github.com/rxw), [linkedin](http://linkedin.com/in/fausto-uribe)
