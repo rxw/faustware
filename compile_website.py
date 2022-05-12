@@ -10,6 +10,7 @@ HTTPDIR = 'serve'
 def build_index(dirs):
     body = open(os.path.join(MDDIR, 'header.html'), 'r').read()
     indexmd = open(os.path.join(MDDIR, 'index.md'), 'r').read()
+    footer = open(os.path.join(MDDIR, 'footer.html'), 'r').read()
     body += '\n'
     body += markdown.markdown(indexmd)
     body += '\n'
@@ -32,6 +33,7 @@ def build_index(dirs):
         body += markdown.markdown(section)
         body += '\n'
     
+    body += footer
     with open(os.path.join(HTTPDIR, 'index.html'), 'w') as indexfile:
         indexfile.write(body)
 
