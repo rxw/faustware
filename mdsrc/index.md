@@ -5,5 +5,5 @@
 - searching on blockchains
 - [resume](/FaustoUribeResume2022.pdf), [github](http://github.com/rxw), [linkedin](http://linkedin.com/in/fausto-uribe), [lichess](https://lichess.org/@/faustilini)
 
-## papers
+## papes
 - [Anonymous Voting in DAO's](/Anonymous_Voting_in_DAOs.pdf)
