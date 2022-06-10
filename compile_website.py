@@ -2,6 +2,7 @@
 # Compiles my website into html from markdown
 import markdown
 import os
+from puppies import create_puppy_image
 
 DIRS = ['blog']
 MDDIR = 'mdsrc'
@@ -40,7 +41,6 @@ def build_index(dirs):
 def build_dirs(dirs):
     for dirname in dirs:
         path = os.path.join(MDDIR, dirname)
-        label = dirname
         files = os.listdir(path)
         files.sort(key=lambda x: os.path.getmtime(os.path.join(path, x)))
         
@@ -58,4 +58,5 @@ def build_dirs(dirs):
 if __name__ == '__main__':
     build_index(DIRS)
     build_dirs(DIRS)
+    create_puppy_image()
 
