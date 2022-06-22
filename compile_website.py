@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # Compiles my website into html from markdown
 import markdown
 import os
