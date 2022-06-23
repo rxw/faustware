@@ -17,15 +17,9 @@ body {
   margin: 0 auto;
   max-width: 800px;
 }
-code,
-pre,
 blockquote {
   padding: .2em;
   background: rgba(0,0,0,.1);
-}
-code,
-pre {
-  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 }
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 .5em 0;
@@ -59,6 +53,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+img{
+  max-width: 100%;
+}
 footer {
   position: fixed;
   bottom: 0px;

@@ -20,16 +20,30 @@ def build_index(dirs):
         path = os.path.join(MDDIR, dirname)
         label = dirname
         files = os.listdir(path)
-        files.sort(key=lambda x: os.path.getmtime(os.path.join(path, x)))
         section = '## {} \n'.format(label)
-        
+        items = []
+
         for filename in files:
             filepath = os.path.join(path, filename)
             content = open(filepath, 'r').read()
             name = filename.split('.')[0]
-            title = content.split('\n')[0][1:]
+            md = markdown.Markdown(extensions=['meta'])
+            md.convert(content)
+            meta = md.Meta
 
-            section += '- [{}](/{}.html)\n'.format(title, name)
+            title = meta['title'][0]
+            date = meta['date'][0]
+            
+            items.append({
+                'title': title,
+                'date': date,
+                'name': name
+            })
+
+        items.sort(key=lambda i: i['date'], reverse=True)
+
+        for item in items:
+            section += '- [{}](/{}.html)\n'.format(item['title'], item['name'])
 
         body += markdown.markdown(section)
         body += '\n'
@@ -50,7 +64,7 @@ def build_dirs(dirs):
             content = open(filepath, 'r').read()
             name = filename.split('.')[0]
             
-            body += markdown.markdown(content)
+            body += markdown.markdown(content, extensions=['fenced_code', 'meta'])
             with open(os.path.join(HTTPDIR, name + '.html'), 'w') as dirfile:
                 dirfile.write(body)
 
@@ -58,5 +72,4 @@ def build_dirs(dirs):
 if __name__ == '__main__':
     build_index(DIRS)
     build_dirs(DIRS)
-    create_puppy_image()
 

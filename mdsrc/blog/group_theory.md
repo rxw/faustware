@@ -1,3 +1,8 @@
+---
+author: tato
+title: The study of groups
+date: 2020-08-01
+---
 #  The study of groups
 
 Recently I watched a 3b1b video about group theory and how it relates to

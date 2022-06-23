@@ -1,3 +1,9 @@
+---
+author: tato
+title: The revenue equivalence theorem
+date: 2022-01-01
+---
+
 # The revenue equivalence theorem
 
 This semester I took a class called Market Design. It's an economics class that
