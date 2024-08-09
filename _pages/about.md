@@ -9,7 +9,7 @@ If you'd like to chat, shoot me a message on [instagram](https://instagram.com/i
 Here's some things I've been into recently:
 
 - back squats
-- start ups
+- start-ups
 - traveling
 - hanging out with my friends
 - food -- and beer 🍺
