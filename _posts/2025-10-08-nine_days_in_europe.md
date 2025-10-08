@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Nine Days in Europe"
+title: "Nine days in Europe"
 date: 2025-10-08
 tags: [travel, friends]
 ---
