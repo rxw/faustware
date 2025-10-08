@@ -278,4 +278,4 @@ I head to the lounge and have a few final drinks and laughs.
 ### 1730
 Endure a brutal flight back to the homeland.
 
-![Gullfoss Falls](/images/gullfoss.HEIC)
+![Gullfoss Falls](/images/gullfoss.png)
