@@ -50,8 +50,8 @@ _Some events have been intentionally omitted. Timestamps may not be totally accu
 **2000** — Bratwurst + German beer. Change into pants at the hotel.  
 **2200** — Fancy cocktail bar. Two Negronis too fast.  
 **2300** — Club plan via scooters (I persuade by offering a tandem ride). Almost wipe out; don’t tell him. German kids find this hilarious; one hops on my friend’s scooter.  
-**2400** — Denied entry.  
-**2430** — Second club: one drink, then out. Strangers offer drugs after learning we’re Mexican. We decline.
+**0000** — Denied entry.  
+**0030** — Second club: one drink, then out. Strangers offer drugs after learning we’re Mexican. We decline.
 
 ## Day 4 — Oktoberfest (I)
 **0630** — Opening day. Early start.  
@@ -78,7 +78,7 @@ _Some events have been intentionally omitted. Timestamps may not be totally accu
 **1900** — Offer seats to locals (moms outside; teens inside). Pleasant chat; meet a pharma-CEO dad.  
 **1930** — A normal-sized beer.  
 **2100** — Inside for energy. Standing on benches; I topple one but stick the landing.  
-**2400** — Food stop, then a bar. Irishman vs. U2 debate. Uber home.  
+**0000** — Food stop, then a bar. Irishman vs. U2 debate. Uber home.  
 **0100** — Friend orders Uber Eats and immediately sleeps. We eat his food.
 
 ## Day 6 — Oktoberfest (III) → Barcelona
@@ -90,7 +90,7 @@ _Some events have been intentionally omitted. Timestamps may not be totally accu
 **1800** — “Last beer” at a spot that only sells half-liters. A German tells a very dark Holocaust joke; we don’t get it after three explanations; he regrets it.  
 **1900** — Sprint to the airport.  
 **2000** — Security, then schnitzel + German beer.  
-**2400** — Land in Barcelona. Airbnb.
+**0000** — Land in Barcelona. Airbnb.
 
 ## Day 7 — Barcelona Sights
 **1000** — Sagrada Família exterior.  
