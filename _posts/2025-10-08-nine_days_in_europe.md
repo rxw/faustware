@@ -5,7 +5,7 @@ date: 2025-10-08
 tags: [travel, friends]
 ---
 
-_Some events have been intentionally omitted. Timestamps may not be totally accurate._
+_Some events may have been omitted. Timestamps may not be totally accurate._
 
 - [Day 1 – Reykjavík](#day-1--reykjavík)
 - [Day 2 – Golden Circle](#day-2--golden-circle)
