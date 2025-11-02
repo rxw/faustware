@@ -27,7 +27,7 @@ Okay, what if while some people are walking down the aisle trick-or-treating, th
 
 Example: the people from row 1 are trick-or-treating down the aisle, and all the rows ask them for a trick or a treat. That means future rows never have to go back to row 1. This is also true for row 2, and it implies that row 3 doesn’t need to walk to rows 1–2, row 4 doesn’t need to walk to rows 1–3, etc. Lucky for me, row 33 doesn’t even need to stand up to receive all of their goods.
 
-How long would this take? Looking from the back forward is simpler: row 33 takes 0 time (everything comes to them). Row 32 only has to walk to row 33, so that’s $$6 \times 10 \times 1 = 60 \text{ seconds}$$, and so on. The total time looks like:
+How long would this take? Looking from the back forward is simpler: row 33 takes 0 time (everything comes to them). Row 32 only has to walk to row 33, so that’s $6 \times 10 \times 1 = 60 \text{ seconds}$, and so on. The total time looks like:
 
 $$
 \sum_{n=1}^{32} 60n
@@ -40,7 +40,7 @@ $$
 
 We’ve cut the time by about half, but it’s still ~3× longer than the duration of the flight — though ~10× less than our initial estimate.
 
-This problem is inherently quadratic (which our summation above also hints at). Every person must talk to every other person: for $$N$$ people, this is $$N^2$$ interactions. While we can get speedups from clever scheduling, as long as this requirement holds, we can’t do *that* much better. Such constant-factor improvements become negligible for larger $$N$$ compared to solutions that simply do **less work**. This illustrates why asymptotic time complexity matters in computer algorithms.
+This problem is inherently quadratic (which our summation above also hints at). Every person must talk to every other person: for $N$ people, this is $N^2$ interactions. While we can get speedups from clever scheduling, as long as this requirement holds, we can’t do *that* much better. Such constant-factor improvements become negligible for larger $N$ compared to solutions that simply do **less work**. This illustrates why asymptotic time complexity matters in computer algorithms.
 
 ## Parallelizing more à-la drink cart
 
