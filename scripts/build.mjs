@@ -102,13 +102,20 @@ const relativeHref = (currentPath, targetPath) => {
   if (/^[a-z]+:\/\//i.test(targetPath)) return targetPath;
 
   const normalize = (value) => (value === "/" ? "/" : pageUrl(value));
-  if (normalize(currentPath) === normalize(targetPath)) return ".";
+  const targetIsDirectory = targetPath === "/" || targetPath.endsWith("/");
+  if (normalize(currentPath) === normalize(targetPath)) {
+    return targetIsDirectory ? "./" : ".";
+  }
 
   const fromDir = currentPath === "/" ? "." : currentPath.replace(/^\//, "").replace(/\/$/, "");
-  const toPath = targetPath.replace(/^\//, "");
-  const relativePath = path.posix.relative(fromDir, toPath);
+  const toPath = targetPath === "/" ? "." : targetPath.replace(/^\//, "").replace(/\/$/, "");
+  let relativePath = path.posix.relative(fromDir, toPath);
 
-  return relativePath || path.posix.basename(toPath);
+  if (targetIsDirectory && !relativePath.endsWith("/")) {
+    relativePath += "/";
+  }
+
+  return relativePath || (targetIsDirectory ? "./" : path.posix.basename(toPath));
 };
 
 const postUrlFromDateAndSlug = (date, slug) => {
