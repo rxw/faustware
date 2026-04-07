@@ -1,3 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
 [[headers]]
   for = "/*" # This defines which paths this specific [[headers]] block will cover.
   [headers.values]
@@ -103,4 +107,3 @@
   for = "*.gif"
   [headers.values]
     Cache-Control = "max-age=604800, public"
-
