@@ -48,6 +48,5 @@ $$
 $$\downarrow$$
 
 $$
-\Delta_{1\beta}^{\ast} = \frac{\pm \sqrt{R_{2\alpha}R_{2\beta}R_{1\alpha}R_{1\beta}}
-+ R_{1\alpha}R_{1\beta}}{R_{2\alpha} + R_{1\alpha}} - R_{1\beta}
+\Delta_{1\beta}^{\ast} = \frac{\pm \sqrt{R_{2\alpha}R_{2\beta}R_{1\alpha}R_{1\beta}} + R_{1\alpha}R_{1\beta}}{R_{2\alpha} + R_{1\alpha}} - R_{1\beta}
 $$
