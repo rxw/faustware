@@ -96,6 +96,19 @@ const pageUrl = (pathname) => {
   return pathname.endsWith("/") ? pathname : `${pathname}/`;
 };
 
+const relativeHref = (currentPath, targetPath) => {
+  if (/^[a-z]+:\/\//i.test(targetPath)) return targetPath;
+
+  const normalize = (value) => (value === "/" ? "/" : pageUrl(value));
+  if (normalize(currentPath) === normalize(targetPath)) return ".";
+
+  const fromDir = currentPath === "/" ? "." : currentPath.replace(/^\//, "").replace(/\/$/, "");
+  const toPath = targetPath.replace(/^\//, "");
+  const relativePath = path.posix.relative(fromDir, toPath);
+
+  return relativePath || path.posix.basename(toPath);
+};
+
 const postUrlFromDateAndSlug = (date, slug) => {
   const yyyy = date.getFullYear();
   const mm = String(date.getMonth() + 1).padStart(2, "0");
@@ -131,14 +144,21 @@ const renderMarkdown = (markdown) => {
     return `<img src="${escapeAttr(token.href)}" alt="${escapeAttr(token.text ?? "")}"${titleAttr} loading="lazy" decoding="async">`;
   };
 
-  return marked.parse(markdown, { ...markdownOptions, renderer });
+  const html = marked.parse(markdown, { ...markdownOptions, renderer });
+  return html;
 };
+
+const rewriteRootRelativeUrls = (html, currentPath) =>
+  html.replace(/\b(href|src)=["']\/(?!\/)([^"']+)["']/g, (_match, attr, targetPath) => {
+    const value = relativeHref(currentPath, `/${targetPath}`);
+    return `${attr}="${value}"`;
+  });
 
 const renderNav = (currentPath) => {
   const links = site.nav
     .map((item) => {
       const current = item.href === currentPath ? ' aria-current="page"' : "";
-      return `<li><a href="${item.href}"${current}>${escapeHtml(item.title)}</a></li>`;
+      return `<li><a href="${relativeHref(currentPath, item.href)}"${current}>${escapeHtml(item.title)}</a></li>`;
     })
     .join("");
 
@@ -183,11 +203,11 @@ const renderShell = ({
   <meta property="og:type" content="${currentPath === "/" ? "website" : "article"}">
   <meta property="og:url" content="${new URL(currentPath, site.url).href}">
   <meta property="og:site_name" content="${escapeAttr(site.title)}">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="alternate" type="application/atom+xml" title="${escapeAttr(site.title)}" href="/atom.xml">
-  <link rel="alternate" type="application/json" title="${escapeAttr(site.title)}" href="/feed.json">
-  <link rel="sitemap" type="application/xml" title="sitemap" href="/sitemap.xml">
-  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="${relativeHref(currentPath, "/styles.css")}">
+  <link rel="alternate" type="application/atom+xml" title="${escapeAttr(site.title)}" href="${relativeHref(currentPath, "/atom.xml")}">
+  <link rel="alternate" type="application/json" title="${escapeAttr(site.title)}" href="${relativeHref(currentPath, "/feed.json")}">
+  <link rel="sitemap" type="application/xml" title="sitemap" href="${relativeHref(currentPath, "/sitemap.xml")}">
+  <link rel="icon" href="${relativeHref(currentPath, "/favicon.png")}">
   ${extraHead}
   ${mathHead}
 </head>
@@ -203,9 +223,10 @@ const renderShell = ({
 };
 
 const renderPostPage = (post) => {
+  const currentPath = post.url;
   const tags = post.tags.length
     ? ` · ${post.tags
-        .map((tag) => `<a href="/tag/${slugify(tag)}/">${escapeHtml(tag)}</a>`)
+        .map((tag) => `<a href="${relativeHref(currentPath, `/tag/${slugify(tag)}/`)}">${escapeHtml(tag)}</a>`)
         .join(", ")}`
     : "";
 
@@ -225,7 +246,7 @@ const renderPostPage = (post) => {
             year: "numeric",
           })}</time>${tags}
         </p>
-        ${post.html}
+        ${rewriteRootRelativeUrls(post.html, post.url)}
       </article>
     `,
   });
@@ -248,7 +269,7 @@ const renderListingPage = ({ title, description, currentPath, items, emptyText }
           items.length
             ? `<ol class="tag-list">${items
                 .map(
-                  (item) => `<li><a href="${item.url}">${escapeHtml(item.title)}</a><time datetime="${formatDateIso(item.date)}">${formatDate(item.date, {
+                  (item) => `<li><a href="${relativeHref(currentPath, item.url)}">${escapeHtml(item.title)}</a><time datetime="${formatDateIso(item.date)}">${formatDate(item.date, {
                     month: "2-digit",
                     day: "2-digit",
                     year: "numeric",
@@ -272,7 +293,7 @@ const renderHomePage = (posts) =>
         <ol class="posts">
           ${posts
             .map(
-              (post) => `<li><a href="${post.url}">${escapeHtml(post.title)}</a><time datetime="${formatDateIso(post.date)}">${formatDate(post.date, {
+              (post) => `<li><a href="${relativeHref("/", post.url)}">${escapeHtml(post.title)}</a><time datetime="${formatDateIso(post.date)}">${formatDate(post.date, {
                 month: "2-digit",
                 day: "2-digit",
                 year: "numeric",
@@ -290,7 +311,7 @@ const renderSearchPage = () =>
     description: "Search across the writing archive.",
     currentPath: "/search/",
     bodyClass: "search-page",
-    extraHead: '<script defer src="/search.js"></script>',
+    extraHead: '<script defer src="../search.js"></script>',
     content: `
       <article class="search-box">
         <h1>Search</h1>
@@ -314,7 +335,7 @@ const renderTagPage = (tag, posts) =>
         <ol class="tag-list">
           ${posts
             .map(
-              (post) => `<li><a href="${post.url}">${escapeHtml(post.title)}</a><time datetime="${formatDateIso(post.date)}">${formatDate(post.date, {
+              (post) => `<li><a href="${relativeHref(`/tag/${slugify(tag)}/`, post.url)}">${escapeHtml(post.title)}</a><time datetime="${formatDateIso(post.date)}">${formatDate(post.date, {
                 month: "2-digit",
                 day: "2-digit",
                 year: "numeric",
@@ -334,7 +355,7 @@ const renderAboutPage = (page) =>
     content: `
       <article>
         <h1>${escapeHtml(page.title)}</h1>
-        ${page.html}
+        ${rewriteRootRelativeUrls(page.html, page.url)}
       </article>
     `,
   });

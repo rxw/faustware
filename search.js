@@ -50,7 +50,7 @@
           .map(
             (entry) => `
               <li>
-                <a href="${escapeHtml(entry.url)}">${escapeHtml(entry.title)}</a>
+                <a href="${escapeHtml(new URL(entry.url, window.location.href).href)}">${escapeHtml(entry.title)}</a>
                 <div>${escapeHtml(entry.description)}</div>
               </li>
             `
@@ -63,7 +63,7 @@
     }
   };
 
-  fetch("/search.json")
+  fetch(new URL("../search.json", window.location.href))
     .then((response) => response.json())
     .then((data) => {
       index = Array.isArray(data) ? data : [];
