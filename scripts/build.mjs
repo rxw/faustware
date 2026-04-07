@@ -306,7 +306,7 @@ const renderHomePage = (posts, aboutHtml, inlineCss) =>
     content: `
       <article class="landing">
         <section class="landing-intro">
-          <h1>Fausto Uribe</h1>
+          <h1>About</h1>
           ${aboutHtml}
         </section>
         <section class="landing-writing">

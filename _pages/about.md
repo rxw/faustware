@@ -12,4 +12,3 @@ I studied CS and Economics at MIT. When I'm not reading papers or working, I lik
 - back squats
 - traveling
 - long walks
-- good coffee
