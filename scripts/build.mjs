@@ -24,6 +24,8 @@ const escapeHtml = (value = "") =>
 
 const escapeAttr = (value = "") => escapeHtml(value).replaceAll("\n", " ");
 
+const escapeScript = (value = "") => String(value).replaceAll("</script>", "<\\/script>");
+
 const stripHtml = (html = "") =>
   html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -172,7 +174,9 @@ const renderShell = ({
   currentPath = "/",
   bodyClass = "",
   math = false,
+  inlineCss = "",
   extraHead = "",
+  extraBody = "",
 }) => {
   const pageTitle = title ? `${title} - ${site.title}` : site.title;
   const mathHead = math
@@ -204,6 +208,7 @@ const renderShell = ({
   <meta property="og:url" content="${new URL(currentPath, site.url).href}">
   <meta property="og:site_name" content="${escapeAttr(site.title)}">
   <link rel="stylesheet" href="${relativeHref(currentPath, "/styles.css")}">
+  <style>${inlineCss}</style>
   <link rel="alternate" type="application/atom+xml" title="${escapeAttr(site.title)}" href="${relativeHref(currentPath, "/atom.xml")}">
   <link rel="alternate" type="application/json" title="${escapeAttr(site.title)}" href="${relativeHref(currentPath, "/feed.json")}">
   <link rel="sitemap" type="application/xml" title="sitemap" href="${relativeHref(currentPath, "/sitemap.xml")}">
@@ -218,11 +223,12 @@ const renderShell = ({
       ${content}
     </section>
   </main>
+  ${extraBody}
 </body>
 </html>`;
 };
 
-const renderPostPage = (post) => {
+const renderPostPage = (post, inlineCss) => {
   const currentPath = post.url;
   const tags = post.tags.length
     ? ` · ${post.tags
@@ -234,6 +240,7 @@ const renderPostPage = (post) => {
     title: post.title,
     description: post.description,
     currentPath: post.url,
+    inlineCss,
     bodyClass: "post-page",
     math: post.hasMath,
     content: `
@@ -252,11 +259,12 @@ const renderPostPage = (post) => {
   });
 };
 
-const renderListingPage = ({ title, description, currentPath, items, emptyText }) =>
+const renderListingPage = ({ title, description, currentPath, items, emptyText, inlineCss }) =>
   renderShell({
     title,
     description,
     currentPath,
+    inlineCss,
     content: `
       <article>
         <h1>${escapeHtml(title)}</h1>
@@ -282,11 +290,12 @@ const renderListingPage = ({ title, description, currentPath, items, emptyText }
     `,
   });
 
-const renderHomePage = (posts) =>
+const renderHomePage = (posts, inlineCss) =>
   renderShell({
     title: "Writing",
     description: site.description,
     currentPath: "/",
+    inlineCss,
     content: `
       <article>
         <h1>Writing</h1>
@@ -305,13 +314,14 @@ const renderHomePage = (posts) =>
     `,
   });
 
-const renderSearchPage = () =>
+const renderSearchPage = (inlineCss, searchScript) =>
   renderShell({
     title: "Search",
     description: "Search across the writing archive.",
     currentPath: "/search/",
+    inlineCss,
     bodyClass: "search-page",
-    extraHead: '<script defer src="../search.js"></script>',
+    extraBody: `<script>${escapeScript(searchScript)}</script>`,
     content: `
       <article class="search-box">
         <h1>Search</h1>
@@ -324,11 +334,12 @@ const renderSearchPage = () =>
     `,
   });
 
-const renderTagPage = (tag, posts) =>
+const renderTagPage = (tag, posts, inlineCss) =>
   renderShell({
     title: `Tag: ${tag}`,
     description: `Posts tagged ${tag}.`,
     currentPath: `/tag/${slugify(tag)}/`,
+    inlineCss,
     content: `
       <article>
         <h1>Tag: ${escapeHtml(tag)}</h1>
@@ -347,11 +358,12 @@ const renderTagPage = (tag, posts) =>
     `,
   });
 
-const renderAboutPage = (page) =>
+const renderAboutPage = (page, inlineCss) =>
   renderShell({
     title: page.title,
     description: page.description || site.description,
     currentPath: page.url,
+    inlineCss,
     content: `
       <article>
         <h1>${escapeHtml(page.title)}</h1>
@@ -360,11 +372,12 @@ const renderAboutPage = (page) =>
     `,
   });
 
-const renderNotFoundPage = () =>
+const renderNotFoundPage = (inlineCss) =>
   renderShell({
     title: "404: Page not found",
     description: "Page not found.",
     currentPath: "/404.html",
+    inlineCss,
     content: `
       <article>
         <h1>404: Page not found</h1>
@@ -493,6 +506,11 @@ const buildSite = async () => {
   await removeDir(distDir);
   await ensureDir(distDir);
 
+  const [inlineCss, searchScript] = await Promise.all([
+    readText(path.join(rootDir, "styles.css")),
+    readText(path.join(rootDir, "search.js")),
+  ]);
+
   const [postSources, pageSources] = await Promise.all([
     readCollection(path.join(rootDir, "_posts"), "post"),
     readCollection(path.join(rootDir, "_pages"), "page"),
@@ -552,20 +570,20 @@ const buildSite = async () => {
   for (const [tag, items] of tags) {
     items.sort((a, b) => b.date - a.date);
     const tagDir = path.join(distDir, "tag", slugify(tag));
-    await writeFile(path.join(tagDir, "index.html"), renderTagPage(tag, items));
+    await writeFile(path.join(tagDir, "index.html"), renderTagPage(tag, items, inlineCss));
   }
 
-  await writeFile(path.join(distDir, "index.html"), renderHomePage(renderedPosts));
-  await writeFile(path.join(distDir, "about", "index.html"), renderAboutPage(pages.about));
-  await writeFile(path.join(distDir, "search", "index.html"), renderSearchPage());
-  await writeFile(path.join(distDir, "404.html"), renderNotFoundPage());
+  await writeFile(path.join(distDir, "index.html"), renderHomePage(renderedPosts, inlineCss));
+  await writeFile(path.join(distDir, "about", "index.html"), renderAboutPage(pages.about, inlineCss));
+  await writeFile(path.join(distDir, "search", "index.html"), renderSearchPage(inlineCss, searchScript));
+  await writeFile(path.join(distDir, "404.html"), renderNotFoundPage(inlineCss));
   await writeFile(path.join(distDir, "atom.xml"), buildAtomXml({ posts: renderedPosts }));
   await writeFile(path.join(distDir, "feed.json"), buildFeedJson({ posts: renderedPosts }));
   await writeFile(path.join(distDir, "sitemap.xml"), buildSitemap({ pages, posts: renderedPosts, tags }));
   await writeFile(path.join(distDir, "robots.txt"), `User-agent: *\nSitemap: ${site.url}/sitemap.xml\n`);
 
   for (const post of renderedPosts) {
-    await writeFile(path.join(distDir, post.url.slice(1), "index.html"), renderPostPage(post));
+    await writeFile(path.join(distDir, post.url.slice(1), "index.html"), renderPostPage(post, inlineCss));
   }
 
   const searchIndex = renderedPosts.map((post) => ({
