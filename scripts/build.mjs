@@ -171,7 +171,7 @@ const renderNav = (currentPath) => {
     })
     .join("");
 
-  return `<header class="site-nav"><a class="site-brand" href="/">${escapeHtml(site.title)}</a><nav aria-label="Primary"><ul>${links}</ul></nav></header>`;
+  return `<header class="site-nav"><nav aria-label="Primary"><ul>${links}</ul></nav></header>`;
 };
 
 const renderShell = ({

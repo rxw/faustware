@@ -53,25 +53,17 @@ main {
 .site-nav {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1.25rem;
   padding: 0.4rem 0 0.65rem;
   margin-bottom: 1.25rem;
 }
 
-.site-brand,
 h1,
 h2,
 h3,
 h4 {
   font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-}
-
-.site-brand {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.15rem;
 }
 
 .site-nav nav ul {
@@ -108,8 +100,7 @@ h4 {
 }
 
 .landing-intro ul {
-  columns: 2;
-  column-gap: 2rem;
+  columns: 1;
 }
 
 .landing-writing h2 {
@@ -275,10 +266,6 @@ pre code {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.55rem;
-  }
-
-  .landing-intro ul {
-    columns: 1;
   }
 
   .posts li,
