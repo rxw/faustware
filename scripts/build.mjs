@@ -297,26 +297,32 @@ const renderListingPage = ({ title, description, currentPath, items, emptyText, 
     `,
   });
 
-const renderHomePage = (posts, inlineCss) =>
+const renderHomePage = (posts, aboutHtml, inlineCss) =>
   renderShell({
-    title: "Writing",
+    title: "Home",
     description: site.description,
     currentPath: "/",
     inlineCss,
     content: `
-      <article>
-        <h1>Writing</h1>
-        <ol class="posts">
-          ${posts
-            .map(
-              (post) => `<li><a href="${relativeHref("/", post.url)}">${escapeHtml(post.title)}</a><time datetime="${formatDateIso(post.date)}">${formatDate(post.date, {
-                month: "2-digit",
-                day: "2-digit",
-                year: "numeric",
-              })}</time></li>`
-            )
-            .join("")}
-        </ol>
+      <article class="landing">
+        <section class="landing-intro">
+          <h1>Fausto Uribe</h1>
+          ${aboutHtml}
+        </section>
+        <section class="landing-writing">
+          <h2>Writing</h2>
+          <ol class="posts">
+            ${posts
+              .map(
+                (post) => `<li><a href="${relativeHref("/", post.url)}">${escapeHtml(post.title)}</a><time datetime="${formatDateIso(post.date)}">${formatDate(post.date, {
+                  month: "2-digit",
+                  day: "2-digit",
+                  year: "numeric",
+                })}</time></li>`
+              )
+              .join("")}
+          </ol>
+        </section>
       </article>
     `,
   });
@@ -365,16 +371,17 @@ const renderTagPage = (tag, posts, inlineCss) =>
     `,
   });
 
-const renderAboutPage = (page, inlineCss) =>
+const renderAboutPage = (_page, inlineCss) =>
   renderShell({
-    title: page.title,
-    description: page.description || site.description,
-    currentPath: page.url,
+    title: "About",
+    description: site.description,
+    currentPath: "/about/",
     inlineCss,
+    extraHead: '<meta http-equiv="refresh" content="0; url=/">',
     content: `
       <article>
-        <h1>${escapeHtml(page.title)}</h1>
-        ${rewriteRootRelativeUrls(page.html, page.url)}
+        <h1>About</h1>
+        <p>This page moved to the homepage. <a href="/">Go there instead.</a></p>
       </article>
     `,
   });
@@ -580,7 +587,7 @@ const buildSite = async () => {
     await writeFile(path.join(tagDir, "index.html"), renderTagPage(tag, items, inlineCss));
   }
 
-  await writeFile(path.join(distDir, "index.html"), renderHomePage(renderedPosts, inlineCss));
+  await writeFile(path.join(distDir, "index.html"), renderHomePage(renderedPosts, pages.about.html, inlineCss));
   await writeFile(path.join(distDir, "about", "index.html"), renderAboutPage(pages.about, inlineCss));
   await writeFile(path.join(distDir, "search", "index.html"), renderSearchPage(inlineCss, searchScript));
   await writeFile(path.join(distDir, "404.html"), renderNotFoundPage(inlineCss));

@@ -3,12 +3,13 @@ layout: page
 title: About
 ---
 
-Hi, I'm Fausto. I currently live in New York City where I work on [secure communication in the presence of adversarial behavior](https://en.wikipedia.org/wiki/Cryptography). In the past I studied CS and Economics at MIT.
-If you'd like to chat, shoot me a message on [linkedin](https://linkedin.com/in/fausto-uribe) or at tato at uribe dot com dot mx.
+Hi, I'm Fausto. I'm working on [post-quantum cryptography](https://en.wikipedia.org/wiki/Post-quantum_cryptography).
 
-Here's some things I've been into recently:
+I'm also interested in using AI in boring businesses. If you have a boring business, I'd love to learn more.
+
+I studied CS and Economics at MIT. When I'm not reading papers or working, I like:
 
 - back squats
-- start-ups
 - traveling
-- biohacking
+- long walks
+- good coffee
