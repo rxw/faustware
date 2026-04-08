@@ -52,7 +52,7 @@ main {
 
 .site-nav {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: flex-start;
   gap: 1.25rem;
   width: min(100%, 50rem);
