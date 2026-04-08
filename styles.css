@@ -55,8 +55,9 @@ main {
   align-items: baseline;
   justify-content: flex-start;
   gap: 1.25rem;
+  width: min(100%, 50rem);
+  margin: 0 auto 1.25rem;
   padding: 0.4rem 0 0.65rem;
-  margin-bottom: 1.25rem;
 }
 
 h1,
@@ -96,7 +97,7 @@ h4 {
 }
 
 .landing-intro p {
-  max-width: 68ch;
+  max-width: none;
 }
 
 .landing-intro ul {
