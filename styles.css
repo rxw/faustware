@@ -44,6 +44,16 @@ a:hover {
   color: var(--link-hover);
 }
 
+::selection {
+  background: #e9c874;
+  color: var(--text);
+}
+
+::-moz-selection {
+  background: #e9c874;
+  color: var(--text);
+}
+
 main {
   max-width: 68rem;
   margin: 0 auto;
