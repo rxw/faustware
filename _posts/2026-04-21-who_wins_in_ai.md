@@ -17,9 +17,9 @@ But revenue, of course, is not profit. What matters is how much you keep.
 
 ## The Economics
 
-Inference -- actually running a trained model -- is cheap. Margins of 90% on inference have been floated, and this is not entirely crazy. Training is where the money disappears: the enormous, multi-billion-dollar runs that produce each new generation. But here is the thing: marginal improvements are getting smaller. GPT-5 is better than GPT-4, but not by as much as GPT-4 was better than GPT-3. One can imagine a world where the labs decide, essentially, to slow the massively expensive training runs, begin amortizing their existing costs, and suddenly find themselves running the most profitable businesses in human history.
+Inference -- actually running a trained model -- is cheap. Margins of 90% on inference have been floated, and this is not entirely crazy. Training is where the money disappears: the enormous, multi-billion-dollar runs that produce each new generation. The whole business turns on whether the labs can slow the cadence of frontier training, amortize what they already have, and convert the model stack into an annuity.
 
-Whether this world obtains depends entirely on whether they can maintain pricing power. The relevant theory is standard: for a firm with market power, the optimal markup satisfies the Lerner condition,
+That depends on pricing power. The relevant theory is standard: for a firm with market power, the optimal markup satisfies the Lerner condition,
 
 $$\frac{p - MC}{p} = \frac{1}{|\varepsilon|}$$
 
@@ -49,9 +49,9 @@ Substituting $\bar{z} = 200\bar{S}/N$ and applying the Lerner condition, we reco
 
 $$MC = p - \frac{200\bar{S}}{N}.$$
 
-For Opus 4.6 at a blended rate of roughly \$6 per million tokens, a task consuming 20 million tokens, and a mean time-saving of $\bar{S} = 0.4$ hours (twenty-four minutes), this gives $MC \approx \$2$ per million tokens, implying margins near 67%. This is close to numbers Dario Amodei has cited publicly.
+For Opus 4.6 at a blended rate of roughly \$6 per million tokens, a task consuming 20 million tokens, and a mean time-saving of $\bar{S} = 0.4$ hours (twenty-four minutes), this gives $MC \approx \$2$ per million tokens, implying margins near 67%. That is close to numbers Dario Amodei has cited publicly.
 
-Under duopoly the markup equation gets halved: margins fall toward 33%. Under oligopoly they compress further -- 22%, 16%, 13% -- converging toward the competitive outcome. Today's AI coding market looks roughly like a duopoly; Opus and GPT are interchangeable for most tasks, which is why 33% is probably close to the present reality. The math is not deep, but it is clarifying.
+Under duopoly the markup equation gets halved: margins fall toward 33%. Under oligopoly they compress further -- 22%, 16%, 13% -- converging toward the competitive outcome. Today's AI coding market looks roughly like a duopoly; Opus and GPT are interchangeable for most tasks, which is why 33% is probably close to the present reality. The exact numbers can move around, but the shape of the business is hard to miss: revenue only turns into money if demand stays stubbornly inelastic.
 
 ---
 
