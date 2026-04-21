@@ -25,7 +25,7 @@ $$\frac{p - MC}{p} = \frac{1}{|\varepsilon|}$$
 
 where $p$ is price, $MC$ is marginal cost, and $\varepsilon$ is the price elasticity of demand. High margins require inelastic demand: users who will pay regardless of price because the alternative is worse.
 
-Consider a frontend engineer whose task takes $X$ hours without the model and $Y$ hours with it, valued at \$200 per hour. The value created is
+Consider a frontend engineer whose task takes $X$ hours without the model and $Y$ hours with it, valued at 200 dollars per hour. The value created is
 
 $$V = 200(X - Y).$$
 
@@ -49,7 +49,7 @@ Substituting $\bar{z} = 200\bar{S}/N$ and applying the Lerner condition, we reco
 
 $$MC = p - \frac{200\bar{S}}{N}.$$
 
-For Opus 4.6 at a blended rate of roughly \$6 per million tokens, a task consuming 20 million tokens, and a mean time-saving of $\bar{S} = 0.4$ hours (twenty-four minutes), this gives $MC \approx \$2$ per million tokens, implying margins near 67%. That is close to numbers Dario Amodei has cited publicly.
+For Opus 4.6 at a blended rate of roughly 6 dollars per million tokens, a task consuming 20 million tokens, and a mean time-saving of $\bar{S} = 0.4$ hours (twenty-four minutes), this gives $MC \approx 2$ dollars per million tokens, implying margins near 67%. That is close to numbers Dario Amodei has cited publicly.
 
 Under duopoly the markup equation gets halved: margins fall toward 33%. Under oligopoly they compress further -- 22%, 16%, 13% -- converging toward the competitive outcome. Today's AI coding market looks roughly like a duopoly; Opus and GPT are interchangeable for most tasks, which is why 33% is probably close to the present reality. The exact numbers can move around, but the shape of the business is hard to miss: revenue only turns into money if demand stays stubbornly inelastic.
 
