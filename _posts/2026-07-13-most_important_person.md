@@ -2,7 +2,7 @@
 layout: post
 title: "On the most important person in history"
 date: 2026-07-13
-tags: [Economics, Networks]
+tags: [economics, networks]
 ---
 
 It was a quiet night, the kind where the refrigerator hums a little too loudly, when I found myself watching a video called "Wikipedia's Biggest Mystery." I don't remember how I got there. That's usually how it happens with videos like this - you blink, and suddenly you're somewhere you never intended to go, like a side street that wasn't on the map.
