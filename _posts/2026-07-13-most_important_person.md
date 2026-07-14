@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "On the most important person in history"
-date: 2026-04-21
+date: 2026-07-13
 tags: [Economics, Networks]
 ---
 
