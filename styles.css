@@ -1,33 +1,33 @@
 @font-face {
-  font-family: "CMU Serif";
+  font-family: "CMU Sans Serif";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/cmu-serif-500-roman.woff2") format("woff2");
+  src: url("/fonts/cmu-sans-serif-500-roman.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "CMU Serif";
+  font-family: "CMU Sans Serif";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/cmu-serif-500-italic.woff2") format("woff2");
+  src: url("/fonts/cmu-sans-serif-500-italic.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "CMU Serif";
+  font-family: "CMU Sans Serif";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/cmu-serif-700-roman.woff2") format("woff2");
+  src: url("/fonts/cmu-sans-serif-700-roman.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "CMU Serif";
+  font-family: "CMU Sans Serif";
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/cmu-serif-700-italic.woff2") format("woff2");
+  src: url("/fonts/cmu-sans-serif-700-italic.woff2") format("woff2");
 }
 
 :root {
@@ -57,7 +57,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.72 "CMU Serif", "Computer Modern Serif", "Latin Modern Roman", Georgia, "Times New Roman", serif;
+  font: 16px/1.72 "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -102,7 +102,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "CMU Serif", "Computer Modern Serif", "Latin Modern Roman", Georgia, "Times New Roman", serif;
+  font-family: "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
 }
 
 .site-nav nav ul {

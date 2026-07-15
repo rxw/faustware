@@ -616,10 +616,10 @@ const buildSite = async () => {
   const fontDir = path.join(rootDir, "node_modules", "computer-modern", "fonts");
   await Promise.all(
     [
-      "cmu-serif-500-roman.woff2",
-      "cmu-serif-500-italic.woff2",
-      "cmu-serif-700-roman.woff2",
-      "cmu-serif-700-italic.woff2",
+      "cmu-sans-serif-500-roman.woff2",
+      "cmu-sans-serif-500-italic.woff2",
+      "cmu-sans-serif-700-roman.woff2",
+      "cmu-sans-serif-700-italic.woff2",
     ].map((fontFile) => copyFile(path.join(fontDir, fontFile), path.join(distDir, "fonts", fontFile)))
   );
   await copyDirectory(path.join(rootDir, "images"), path.join(distDir, "images"));
