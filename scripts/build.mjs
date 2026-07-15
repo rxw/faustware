@@ -613,6 +613,15 @@ const buildSite = async () => {
   await copyFile(path.join(rootDir, "search.js"), path.join(distDir, "search.js"));
   await copyFile(path.join(rootDir, "styles.css"), path.join(distDir, "styles.css"));
   await copyFile(path.join(rootDir, "favicon.png"), path.join(distDir, "favicon.png"));
+  const fontDir = path.join(rootDir, "node_modules", "computer-modern", "fonts");
+  await Promise.all(
+    [
+      "cmu-serif-500-roman.woff2",
+      "cmu-serif-500-italic.woff2",
+      "cmu-serif-700-roman.woff2",
+      "cmu-serif-700-italic.woff2",
+    ].map((fontFile) => copyFile(path.join(fontDir, fontFile), path.join(distDir, "fonts", fontFile)))
+  );
   await copyDirectory(path.join(rootDir, "images"), path.join(distDir, "images"));
 };
 

@@ -7,8 +7,4 @@ Hi, I'm Fausto. I'm working on [post-quantum cryptography](https://en.wikipedia.
 
 I'm also interested in using AI in boring businesses. If you have a boring business, I'd love to learn more.
 
-I studied CS and Economics at MIT. When I'm not reading papers or working, I like:
-
-- back squats
-- traveling
-- optimization (of anything)
+I studied CS and Economics at MIT.
