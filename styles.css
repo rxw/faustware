@@ -57,7 +57,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.72 "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
+  font: 18px/1.72 "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
