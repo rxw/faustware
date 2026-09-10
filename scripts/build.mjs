@@ -610,6 +610,8 @@ const buildSite = async () => {
 
   await writeFile(path.join(distDir, "search.json"), JSON.stringify(searchIndex, null, 2));
 
+  await copyFile(path.join(rootDir, "_headers"), path.join(distDir, "_headers"));
+  await copyFile(path.join(rootDir, "_redirects"), path.join(distDir, "_redirects"));
   await copyFile(path.join(rootDir, "search.js"), path.join(distDir, "search.js"));
   await copyFile(path.join(rootDir, "styles.css"), path.join(distDir, "styles.css"));
   await copyFile(path.join(rootDir, "favicon.png"), path.join(distDir, "favicon.png"));

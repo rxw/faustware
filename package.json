@@ -3,12 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "computer-modern": "^0.1.3",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
     "marked": "^15.0.7"
+  },
+  "devDependencies": {
+    "wrangler": "^4.131.0"
   }
 }
