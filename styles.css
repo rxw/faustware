@@ -30,6 +30,14 @@
   src: url("/fonts/cmu-sans-serif-700-italic.woff2") format("woff2");
 }
 
+/* CMU's ASCII tilde is the raised TeX accent; borrow a centered one from a system sans. */
+@font-face {
+  font-family: "Centered Tilde";
+  src: local("Helvetica Neue"), local("HelveticaNeue"), local("Helvetica"), local("Arial"), local("ArialMT"),
+    local("Roboto"), local("Liberation Sans"), local("DejaVu Sans");
+  unicode-range: U+007E;
+}
+
 :root {
   color-scheme: light;
   --bg: #fff;
@@ -57,7 +65,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 18px/1.72 "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
+  font: 18px/1.72 "Centered Tilde", "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -102,7 +110,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
+  font-family: "Centered Tilde", "CMU Sans Serif", "Computer Modern Sans", "Latin Modern Sans", Arial, Helvetica, sans-serif;
 }
 
 .site-nav nav ul {
