@@ -2,7 +2,8 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import fg from "fast-glob";
 import matter from "gray-matter";
-import { marked } from "marked";
+import { Marked, Renderer } from "marked";
+import markedFootnote from "marked-footnote";
 import { site } from "../site.config.js";
 
 const rootDir = process.cwd();
@@ -137,7 +138,7 @@ const excerptFromHtml = (html) => {
 };
 
 const renderMarkdown = (markdown) => {
-  const renderer = new marked.Renderer();
+  const renderer = new Renderer();
   const slugs = new Map();
 
   renderer.heading = (token) => {
@@ -153,7 +154,7 @@ const renderMarkdown = (markdown) => {
     return `<img src="${escapeAttr(token.href)}" alt="${escapeAttr(token.text ?? "")}"${titleAttr} loading="lazy" decoding="async">`;
   };
 
-  const html = marked.parse(markdown, { ...markdownOptions, renderer });
+  const html = new Marked().use(markedFootnote()).parse(markdown, { ...markdownOptions, renderer });
   return html;
 };
 
@@ -506,6 +507,7 @@ const readCollection = async (dir, type) => {
       title: parsed.data.title ?? baseName,
       tags: Array.isArray(parsed.data.tags) ? parsed.data.tags : [],
       description: parsed.data.description ?? "",
+      math: parsed.data.math,
       body: parsed.content.trim(),
     };
 
@@ -550,7 +552,7 @@ const buildSite = async () => {
       ...post,
       html,
       excerpt: post.description || excerptFromHtml(html),
-      hasMath: /\$(?:[^$]|\n)+\$|\\\[/m.test(content),
+      hasMath: post.math ?? /\$(?:[^$]|\n)+\$|\\\[/m.test(content),
     };
   });
 
